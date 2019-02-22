@@ -81,6 +81,7 @@ namespace Minesweeper
             }
             if (!clicked.Contains(b.Name)) clicked.Add(b.Name);
             b.Click -= Button_Click;
+            b.MouseRightButtonUp -= Right_Click;
             b.MouseDoubleClick += Double_Click;
             WinCond();
             
@@ -281,12 +282,14 @@ namespace Minesweeper
                 buttonArray[row, col].Foreground = (Brush)converter.ConvertFromString(NumColor(num));
                 if(!clicked.Contains($"cell{row}{col}")) clicked.Add($"cell{row}{col}");
                 buttonArray[row, col].Click -= Button_Click;
+                buttonArray[row, col].MouseRightButtonUp -= Right_Click;
                 buttonArray[row, col].MouseDoubleClick += Double_Click;
                 WinCond();
                 return;
             }
             if (!clicked.Contains($"cell{row}{col}")) clicked.Add($"cell{row}{col}");
             buttonArray[row, col].Click -= Button_Click;
+            buttonArray[row, col].MouseRightButtonUp -= Right_Click;
             buttonArray[row, col].MouseDoubleClick += Double_Click;
             WinCond();
             buttonArray[row, col].BorderThickness = new Thickness(0.5, 0.5, 0.5, 0.5);
